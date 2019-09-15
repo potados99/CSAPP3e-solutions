@@ -1,5 +1,7 @@
 # Chapter 2
 
+Representing and Manipulating Information.
+
 ## Contents
 
 - 2.60 `replace_byte`
