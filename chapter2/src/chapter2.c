@@ -77,7 +77,7 @@ static inline int tadd_ok(int x, int y) {
  * @param x	left operand.
  * @param y right operand.
  *
- * @return non-zero if ok; otherwise zero.
+ * @return 	non-zero if ok; otherwise zero.
  */
 int tsub_ok(int x, int y) {
 	return (y != (1 << 31) && tadd_ok(x, -y));
@@ -105,7 +105,7 @@ static inline int size_t_mult_ok(size_t x, size_t y) {
  * @param count	number of elements to allocate.
  * @param size	size of each element to allocate.
  *
- * @return the allocated address if succedded; otherwise NULL.
+ * @return		the allocated address if succedded; otherwise NULL.
  */
 void *calloc_impl(size_t count, size_t size) {
 	if (!(count && size)) {
@@ -144,7 +144,7 @@ void *calloc_impl(size_t count, size_t size) {
  *
  * @param x	the operand.
  *
- * @return (3/4)x evaluated.
+ * @return	(3/4)x evaluated.
  */
 int threefourth(int x) {
 	int num = 3;
