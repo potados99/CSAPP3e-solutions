@@ -32,10 +32,6 @@ unsigned replace_byte(unsigned x, int i, unsigned char b) {
  * 2.64
  * Check if the given integer has any odd bits.
  * Assume that integer width is 32.
- *
- * @param x	the target to determine.
- *
- * @return	non-zero if any odd bits, or zero.
  */
 int any_odd_one(unsigned x) {
 	return !(!(x & 0x55555555));
@@ -77,6 +73,11 @@ static inline int tadd_ok(int x, int y) {
  *
  * We can use the tadd_ok logic but under condition that y and -y is not same.
  * There is one case the condition not met: T_MIN, in binary 0x1000..0000
+ *
+ * @param x	left operand.
+ * @param y right operand.
+ *
+ * @return non-zero if ok; otherwise zero.
  */
 int tsub_ok(int x, int y) {
 	return (y != (1 << 31) && tadd_ok(x, -y));
@@ -100,6 +101,11 @@ static inline int size_t_mult_ok(size_t x, size_t y) {
  * 
  * This function would not be bound to bit width of size_t
  * and be free from arithmetic overflow error.
+ *
+ * @param count	number of elements to allocate.
+ * @param size	size of each element to allocate.
+ *
+ * @return the allocated address if succedded; otherwise NULL.
  */
 void *calloc_impl(size_t count, size_t size) {
 	if (!(count && size)) {
@@ -132,6 +138,13 @@ void *calloc_impl(size_t count, size_t size) {
 /** 
  * 2.80
  * Evaluate (3/4)x and round toward zero.
+ *
+ * Divide first and multiply later to prevent overflow.
+ * The key idea is to correct the lose.
+ *
+ * @param x	the operand.
+ *
+ * @return (3/4)x evaluated.
  */
 int threefourth(int x) {
 	int num = 3;
@@ -143,6 +156,3 @@ int threefourth(int x) {
 
 	return raw_result + bias;
 }
-
-
-
