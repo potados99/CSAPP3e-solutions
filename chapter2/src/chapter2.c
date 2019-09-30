@@ -147,12 +147,10 @@ void *calloc_impl(size_t count, size_t size) {
  * @return	(3/4)x evaluated.
  */
 int threefourth(int x) {
-	int num = 3;
-	int denom = 4;
+	// x/4 + x/2 = (3/4)x.
+	int raw = (x >> 2) + (x >> 1);
 
-	int raw_result = ((x / denom) * num);
-	int lose = x - ((x / denom) * denom);
-	int bias = (lose * num) / denom;
-
-	return raw_result + bias;
+	// 0x01 is truncated by both 1/4 and 3/4
+	int bias = x & 0x01;
+  	return raw + bias;
 }
