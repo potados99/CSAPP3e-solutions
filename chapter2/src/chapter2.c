@@ -152,5 +152,6 @@ int threefourth(int x) {
 
 	// 0x01 is truncated by both 1/4 and 3/4
 	int bias = x & 0x01;
-  	return raw + bias;
+ 
+	return raw + bias;
 }
