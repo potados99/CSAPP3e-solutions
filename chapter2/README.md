@@ -10,3 +10,4 @@ Representing and Manipulating Information.
 - 2.74 `tsub_ok`
 - 2.76 `calloc`
 - 2.80 `threefourth`
+- 2.90 `fpwr2`

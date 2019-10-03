@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <math.h>
 
 #include "chapter2.h"
 
@@ -69,10 +70,26 @@ TEST(threefourth_test) {
 	return true;
 }
 
+TEST(fpwr2_test) {
+	ASSERT(fpwr2(4) == 16.0f);
+	ASSERT(fpwr2(5) == 32.0f);
+	ASSERT(fpwr2(7) == 128.0f);
+	ASSERT(fpwr2(-126 - 23) != 0.0f);
+	ASSERT(fpwr2(-126 - 23 - 1) == 0.0f);
+	ASSERT(fpwr2(127) != INFINITY);
+	ASSERT(fpwr2(128) == INFINITY);
+	
+	printf("fpwr2(0) is %f.\n", fpwr2(0));
+	printf("fpwr2(1) is %f.\n", fpwr2(1));
+	printf("fpwr2(79) is %f.\n", fpwr2(79));
+
+	return true;
+}
+
 /**
  * Apply changes here after modifying tests.
  */
-size_t testc = 6;
+size_t testc = 7;
 
 test_function testv[] = {
 	replace_byte_test,
@@ -80,5 +97,6 @@ test_function testv[] = {
 	int_size_is_32_test,
 	tsub_ok_test,
 	calloc_test,
-	threefourth_test
+	threefourth_test,
+	fpwr2_test
 };

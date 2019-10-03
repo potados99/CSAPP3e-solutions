@@ -27,4 +27,7 @@ void *calloc_impl(size_t count, size_t size);
 /* 2.80 */
 int threefourth(int x);
 
+/* 2.90 */
+float fpwr2(int x);
+
 #endif /* _chapter2 */

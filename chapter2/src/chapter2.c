@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <math.h>
 
 /**
  * 2.60
@@ -154,4 +155,59 @@ int threefourth(int x) {
 	int bias = x & 0x01;
  
 	return raw + bias;
+}
+
+static inline float u2f(unsigned x) {
+  return *((float *)&x);
+}
+
+/**
+ * 2.90
+ * Evaluate 2^x.
+ *
+ * We use IEEE single precision floating point representation. 
+ *
+ * Length of each field is:
+ * 	Sign: 						1
+ * 	Exponent: 					8
+ * 	Fragment: 					23
+ *
+ * Characteristics:
+ * 	Bias:						127		
+ * 	Normalized exponent range: 	[-126, 127]
+ *
+ * @param x		power.
+ *
+ * @return		the result in single-precision floating point representation.
+ *				return zero if x is too small, +oo if x is too big.
+ */
+float fpwr2(int x) {
+	/* Result exponent and fraction */
+	unsigned exp;
+  	unsigned frac;
+  	unsigned u;
+
+  	if (x < -126 /* Minimun denormailzed exponent value */ + 
+			-23 /* Length of fragment to represent the smallest number */) {
+   		/* too small. return 0.0 */
+   		exp = 0;
+    	frac = 0;
+  	} else if (x < -126 /* Minumum denormalized exponent value. */) {
+  	 	/* Denormalized result */
+  		exp = 0;
+  		frac = 1 << (unsigned)(23 /* Length of fragment */ + x + 126 /* Min exponent * -1 */);
+  	} else if (x < 128 /* Maximum normalized exponent value + 1. */) {
+  		/* Normalized result */
+  	 	exp = 127 /* Bias */ + x;
+  	 	frac = 0;
+  	} else {
+  	 	/* Too big, return +oo */
+  	 	exp = 0xFF;
+  	 	frac = 0;
+  	}
+
+  	/* Pack exp and frac into 32 bits */
+  	u = exp << 23 | frac;
+  	/* Result as float */
+  	return u2f(u);
 }
