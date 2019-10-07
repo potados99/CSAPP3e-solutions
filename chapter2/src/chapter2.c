@@ -188,7 +188,7 @@ float fpwr2(int x) {
   	unsigned u;
 
   	if (x < -126 /* Minimun denormailzed exponent value */ + 
-			-23 /* Length of fragment to represent the smallest number */) {
+			-23 /* Length of fraction to represent the smallest number */) {
    		/* too small. return 0.0 */
    		exp = 0;
     	frac = 0;

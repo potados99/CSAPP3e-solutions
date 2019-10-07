@@ -6,7 +6,7 @@
 
 TEST(compile_test) { 
 	// Define your tests...
-	ASSERT(1 == 1);
+	ASSERT(sizeof(long) == 8);
 	return true;
 }
 
