@@ -1,5 +1,4 @@
-//#include "chapter3.h"
-
+#include "chapter3.h"
 
 /**
  * Implemented from given assembly:
@@ -26,4 +25,16 @@ long decode2(long x, long y, long z) {
 	temp = temp ^ x;
 
 	return temp;
+}
+
+/**
+ * Retrieved from assembly.
+ */
+long loop(long x, int n) {
+	long result = 0;
+	long mask;
+	for (mask = 1; mask != 0; mask <<= n) {
+		result |= (x & mask);
+	}
+	return result;
 }
