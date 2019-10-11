@@ -6,7 +6,7 @@ TARGET_INITIAL	:= test
 TARGET		:= $(TARGET_INITIAL)
 
 CC		:= gcc
-CFLAGS		:= -Wall
+CFLAGS		:= -Wall -O2
 LIB		:=
 
 TARGET_DIR	:= bin

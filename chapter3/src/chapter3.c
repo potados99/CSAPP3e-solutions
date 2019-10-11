@@ -1,6 +1,7 @@
 #include "chapter3.h"
 
 /**
+ * 3.58
  * Implemented from given assembly:
  *
  *	decode2:
@@ -28,6 +29,7 @@ long decode2(long x, long y, long z) {
 }
 
 /**
+ * 3.60
  * Retrieved from assembly.
  */
 long loop(long x, int n) {
@@ -38,3 +40,23 @@ long loop(long x, int n) {
 	}
 	return result;
 }
+
+/** 
+ * 3.61
+ * Dereference the given address and return the value.
+ * If the address is zero, return zero.
+ *
+ * The compiled assembly should be implemented using cmove instruction.
+ *
+ */
+long cread_alt(long *xp) {
+
+	return (!xp ? 0 : *xp);
+}
+
+/* 3.63 */
+long switch_prob(long x, long n) {
+	return 0;
+}
+
+
