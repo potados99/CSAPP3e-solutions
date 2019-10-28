@@ -50,8 +50,13 @@ long loop(long x, int n) {
  *
  */
 long cread_alt(long *xp) {
+	long zero = 0;
+	
+	if (!xp) {
+		xp = &zero;
+	}
 
-	return (!xp ? 0 : *xp);
+	return *xp;
 }
 
 /* 3.63 */
